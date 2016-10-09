@@ -1,4 +1,7 @@
 package pokerBase;
+//Bonnie McNellis
+//Julianna Shevchenko
+//Section 10, Lab 22
 
 import static org.junit.Assert.*;
 
@@ -60,7 +63,7 @@ public class Hand_Test {
 		h.AddToCardsInHand(new Card(eSuit.CLUBS, eRank.KING,1));
 		
 		try {
-			h.EvaulateHand();
+			h.EvaluateHand();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

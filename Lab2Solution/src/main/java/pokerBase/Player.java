@@ -1,4 +1,7 @@
 package pokerBase;
+//Bonnie McNellis
+//Julianna Shevchenko
+//Section 10, Lab 22
 
 import java.util.UUID;
 
