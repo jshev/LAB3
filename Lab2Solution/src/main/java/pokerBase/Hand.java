@@ -563,7 +563,7 @@ public class Hand implements Comparable {
 	            return 0;
 	    	}
 		};
-	//compareTo
+	// compareTo
 	public int compareTo(Object o) {
 		Hand h = (Hand) o;
 		return h.compareTo(this);
