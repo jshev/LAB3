@@ -3,6 +3,7 @@ package pokerEnums;
 import javax.xml.bind.annotation.XmlElement;
 
 public enum eRank {
+	
 	TWO(2), 
 	THREE(3), 
 	FOUR(4), 
@@ -15,9 +16,11 @@ public enum eRank {
 	JACK(11), 
 	QUEEN(12), 
 	KING(13), 
-	ACE(14);
+	ACE(14),
+	JOKER(99);
+	
+	//Added Joker as a new rank
 
-	//TODO - Lab 3 - Add Joker as a new rank Joker(99)
 	private int iRankNbr;
 
 	private eRank(int iRankNbr) {
