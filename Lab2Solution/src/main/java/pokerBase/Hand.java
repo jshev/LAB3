@@ -54,7 +54,6 @@ public class Hand implements Comparable {
 	 * @throws HandException
 	 */
 	static Hand EvaluateHand(Hand h) throws Exception {
-
 		// Sort the collection (by hand rank)
 		Collections.sort(h.getCardsInHand());
 		
@@ -68,7 +67,7 @@ public class Hand implements Comparable {
 			if (h.getCardsInHand().size() != 5) {
 				throw new HandException(eHandExceptions.ShortHand.toString(), h);
 				} 
-			}
+			
 			HandScore hs = new HandScore();
 			try {
 				Class<?> c = Class.forName("pokerBase.Hand");
@@ -108,78 +107,12 @@ public class Hand implements Comparable {
 		}
 
 		//sort ArrayList ExplodedHands (by HandRank) and return the Hand at first position - 0 - (best HandRank)
-		Collections.sort(ExplodedHands, Hand.HandRank());
+		Collections.sort(ExplodedHands, Hand.HandRank);
 		h = ExplodedHands.get(0);
 		return h;
 	}
 
-	//new Hand comparator
-    public static Comparator<Hand> HandRank = new Comparator<Hand>() {
-    	public int compare(Hand h1, Hand h2) {
-    		int result = 0;
-            result = h2.getHs().getHandStrength() - h1.getHs().getHandStrength();
-            if (result != 0) {
-                return result;
-            }
-
-            result = h2.getHs().getHiHand() - h1.getHs().getHiHand();
-            if (result != 0) {
-                return result;
-            }
-
-            result = h2.getHs().getLoHand() - h1.getHs().getLoHand();
-            if (result != 0) {
-                return result;
-            }
-
-            if (h2.getHs().getKickers().size() > 0) {
-                if (h1.getHs().getKickers().size() > 0) {
-                    result = h2.getHs().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr()
-                            - h1.getHs().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr();
-                }
-                if (result != 0) {
-                    return result;
-                }
-            }
-
-            if (h2.getHs().getKickers().size() > 1) {
-                if (h1.getHs().getKickers().size() > 1) {
-                    result = h2.getHs().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank().getiRankNbr()
-                            - h1.getHs().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank().getiRankNbr();
-                }
-                if (result != 0) {
-                    return result;
-                }
-            }
-
-            if (h2.getHs().getKickers().size() > 2) {
-                if (h1.getHs().getKickers().size() > 2) {
-                    result = h2.getHs().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank().getiRankNbr()
-                            - h1.getHs().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank().getiRankNbr();
-                }
-                if (result != 0) {
-                    return result;
-                }
-            }
-
-            if (h2.getHs().getKickers().size() > 3) {
-                if (h1.getHs().getKickers().size() > 3) {
-                    result = h2.getHs().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr()
-                            - h1.getHs().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr();
-                }
-                if (result != 0) {
-                    return result;
-                }
-            }
-            return 0;
-        }
 	
-    	//compareTo
-    	public int compareTo(Object o) {
-    		Hand h = (Hand) o;
-    		return h.compareTo(this);
-
-    	}	
     	
 	//implemented new method that will return winning hand
 	//signature created according to Lab 3 instructions
@@ -568,4 +501,72 @@ public class Hand implements Comparable {
 		hs.setKickers(kickers);
 		return true;
 	}
+	
+	//new Hand comparator
+		public static Comparator<Hand> HandRank = new Comparator<Hand>() {
+	    	public int compare(Hand h1, Hand h2) {
+	    		int result = 0;
+	            result = h2.getHs().getHandStrength() - h1.getHs().getHandStrength();
+	            if (result != 0) {
+	                return result;
+	            }
+
+	            result = h2.getHs().getHiHand() - h1.getHs().getHiHand();
+	            if (result != 0) {
+	                return result;
+	            }
+
+	            result = h2.getHs().getLoHand() - h1.getHs().getLoHand();
+	            if (result != 0) {
+	                return result;
+	            }
+
+	            if (h2.getHs().getKickers().size() > 0) {
+	                if (h1.getHs().getKickers().size() > 0) {
+	                    result = h2.getHs().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr()
+	                            - h1.getHs().getKickers().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr();
+	                }
+	                if (result != 0) {
+	                    return result;
+	                }
+	            }
+
+	            if (h2.getHs().getKickers().size() > 1) {
+	                if (h1.getHs().getKickers().size() > 1) {
+	                    result = h2.getHs().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank().getiRankNbr()
+	                            - h1.getHs().getKickers().get(eCardNo.SecondCard.getCardNo()).geteRank().getiRankNbr();
+	                }
+	                if (result != 0) {
+	                    return result;
+	                }
+	            }
+
+	            if (h2.getHs().getKickers().size() > 2) {
+	                if (h1.getHs().getKickers().size() > 2) {
+	                    result = h2.getHs().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank().getiRankNbr()
+	                            - h1.getHs().getKickers().get(eCardNo.ThirdCard.getCardNo()).geteRank().getiRankNbr();
+	                }
+	                if (result != 0) {
+	                    return result;
+	                }
+	            }
+
+	            if (h2.getHs().getKickers().size() > 3) {
+	                if (h1.getHs().getKickers().size() > 3) {
+	                    result = h2.getHs().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr()
+	                            - h1.getHs().getKickers().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr();
+	                }
+	                if (result != 0) {
+	                    return result;
+	                }
+	            }
+	            return 0;
+	    	}
+		};
+	//compareTo
+	public int compareTo(Object o) {
+		Hand h = (Hand) o;
+		return h.compareTo(this);
+	}
 }
+	
